@@ -72,9 +72,8 @@ var people = [
   created_at: "2014-07-22T20:01:23Z",
 }
 ];
-var profile = ""
 
-console.log(profile);
+//console.log(profile);
 
 $(document).ready(function() {
   console.log("Boom!");
@@ -110,7 +109,7 @@ $(document).ready(function() {
       $placement.append(profile);
     };
   };
-
+var p=0;
   //Generate Profile Cards
   createCard(people, $('.meat'));
 
@@ -199,7 +198,18 @@ $(document).ready(function() {
     event.preventDefault();
     $(this).css("transform", "scale(1)");
   });
-
+  $(".main").on("mouseenter", "h1", function(){
+    console.log("picture should apear")
+    var picThing = "<img class=\'mini-pic\'src=" + people[1].avatar_url + " alt=\"Avatar image\">"
+    $(this).parent(".main").prepend(picThing);
+    $(".mini-pic").css("position", "absolute");
+    $(".mini-pic").css("top", "30px");
+    $(".mini-pic").css("right", "30px");
+    $(".mini-pic").css("width", "100px");
+  });
+  $(".main").on("mouseleave", "h1", function(){
+    $(this).parent(".main").find(".mini-pic").remove();
+  });
 
   //navigation
   $("nav").find("p").on("click", "a", function(event) {
